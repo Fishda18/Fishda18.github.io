@@ -80,6 +80,13 @@
 		
 		document.getElementById("showcolor").style.backgroundColor = 'rgb(' + Rled + ',' + Gled + ',' + Bled + ')';
 		
+		document.getElementById("redvalue").style.
+		backgroundColor = 'rgb(' + Rled + ',0,0)';
+		document.getElementById("greenvalue").style.
+		backgroundColor = 'rgb(0,' + Gled + ',0)';
+		document.getElementById("bluevalue").style.
+		backgroundColor = 'rgb(0,0,' + Bled + ')';
+		
 		if(cpf){
 			cpf.setChainableLed("0," + Rled + "," + Gled + "," + Bled + ";");
 		}
