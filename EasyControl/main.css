@@ -5,6 +5,8 @@ html {
 .header img {
   float: left;
   width: 90%;
+  height: 90%
+  background: #ffffff;
 }
 
 #content {
