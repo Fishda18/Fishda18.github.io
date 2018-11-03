@@ -1,0 +1,13 @@
+The sketch assumes the following setup/wiring:
+Trigger Pin - Pin 12
+Echo Pin - Pin 13
+(JSN...)Sensor must be at least 20cm away from a reference suface (e.g. the glass of the aquarium)
+
+Crude experimentation shows that the following values are suitable for the two Ultrasonic sensors candidate to be used for the project,
+HC-SR04 being the non water proofed sensor.
+
+Ultrasonic sensor
+Model       Delay(ms)       degree of freedom (+-; allowable discrepancy between distance reads before it counts as fish movement)
+SR04              30                            5
+JSN...        50/100                        10/15
+

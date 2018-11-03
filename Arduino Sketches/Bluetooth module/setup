@@ -1,0 +1,29 @@
+Setup/wiring:
+(Fo AT Mode)EN/KEY Pin - 3.3V
+VCC - 5V
+GND - GND
+RX - Pin 0(RX)(must be 3.3V; Since Arduino pins have 5V logic, a voltage divider is needed)
+TX - Pin 1(TX)
+
+The Voltage Divider setup for the RX pin of the bluetooth module should be:
+RX(BT)---1kΩ
+          |
+          |---RX(ARduino)
+          |
+         2kΩ---GND
+
+Entering AT Mode - Connect the EN key to Arduino's 3.3V Pin and then power on t he BT Module. Slow blinks 2 seconds apart indicates that the BT module is in AT mode.
+
+To setup the master BT Module:
+  *Enter master BT's AT mode*
+  1.Get the address of the slave module (by entering AT+ADDR? in slave module's AT mode)
+  2.Set master BT's role to master (AT+ROLE=1; optionally, verify with AT+ROLE?)
+  3.Set cmode to 0 so that the master module only connects to one pre-selected device (the slave BT module) (AT+CMODE=0)
+  4.Set the slave BT as the device the master BT should connect to (AT+BIND=Address of slave BT with colons replaced with commas)
+  5.Power down the master BT and disconnect the EN pin.
+  Next Power up, the master BT module should automatically connect to the slave module if it is online
+
+Bluetooth Module
+Model                 Address         Role
+HC-05(01)      F01C:13:4EF439          ---
+HC-05(02)                 ---          ---
