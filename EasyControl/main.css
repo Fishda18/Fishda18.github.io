@@ -114,6 +114,50 @@ input[type=range]::-webkit-slider-runnable-track {
 	#analog {
 		padding: 10px ;
 	}
-	
-
 }
+
+/*****Deploy button-specific stuff*****/
+p.dl{
+    text-align:center
+}
+p.dl a{
+    padding:15px 30px;
+    display:inline-block;
+    margin:10px auto;
+    text-decoration:none;
+    font-size:25px;
+    background-color:#45b1be;
+    border-radius:5px;
+    font-weight:700;
+    color:#fff;
+    -webkit-box-shadow:0 7px 0 #33838c,0px 11px 16px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow:0 7px 0 #33838c,0px 11px 16px 0 rgba(0,0,0,0.5);
+    -o-box-shadow:0 7px 0 #33838c,0px 11px 16px 0 rgba(0,0,0,0.5);
+    box-shadow:0 7px 0 #33838c,0px 11px 16px 0 rgba(0,0,0,0.5);
+    -webkit-transition:all .1s ease;
+    -moz-transition:all .1s ease;
+    -o-transition:all .1s ease;
+    transition:all .1s ease
+}
+p.dl a:hover{
+    color:#fff;
+    position:relative;
+    top:2px;
+    -webkit-box-shadow:0 5px 0 #33838c,0px 7px 7px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow:0 5px 0 #33838c,0px 7px 7px 0 rgba(0,0,0,0.5);
+    -o-box-shadow:0 5px 0 #33838c,0px 7px 7px 0 rgba(0,0,0,0.5);
+    box-shadow:0 5px 0 #33838c,0px 7px 7px 0 rgba(0,0,0,0.5)
+}
+p.dl a:active{
+    position:relative;
+    top:4px;
+    -webkit-box-shadow:0 2px 0 #33838c,0px 3px 2px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow:0 2px 0 #33838c,0px 3px 2px 0 rgba(0,0,0,0.5);
+    -o-box-shadow:0 2px 0 #33838c,0px 3px 2px 0 rgba(0,0,0,0.5);
+    box-shadow:0 2px 0 #33838c,0px 3px 2px 0 rgba(0,0,0,0.5)
+}
+p.dl a span.details{
+    display:block;
+    font-size:small
+}
+
