@@ -3,9 +3,10 @@ html {
 }
 
 .header img {
-  float: left;
+  display: block;
+	margin-left: auto;
+	margin-right:auto;
   width: 90%;
-  height: 90%
   background: #ffffff;
 }
 
@@ -100,14 +101,14 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 @media screen and (max-width: 430px) {
-	
+
 	#analog {
 		padding: 0 ;
 	}
-	
+
 }
 @media screen and (max-width: 360px) {
-	
+
 	#content {
 		padding: 0px;
 	}
@@ -160,4 +161,3 @@ p.dl a span.details{
     display:block;
     font-size:small
 }
-
