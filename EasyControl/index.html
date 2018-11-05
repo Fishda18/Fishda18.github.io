@@ -48,7 +48,7 @@
 			<span id="showcolor"></span>
 		</div>
 	</div>
-    <p class="dl"><a href="https://Fishda18.github.io/EasyControl" class="button">Deploy Fishda</a></p>
+    <p class="dl"><a Onclick="deploy()" href="javascript:void(0)" class="button">Deploy Fishda</a></p>
 </div>
 
 <script>
@@ -56,6 +56,9 @@
 	var lightdata;
 	var tempdata;
 	var celsius;
+	var deployed = 0;
+	var fish_population = 0;
+
 	setup();
 	// Analog
 	function loop() {
@@ -107,9 +110,23 @@
 	
 	// cpf setup
 	function setup(){
-		if(cpf)
-			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["grove_newChainableLED", 7, 8, 1]'); 
+		if(cpf)["setPinMode", "digital", 7, "OUTPUT"]
+			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["setPinMode", "digital", 7, "OUTPUT"]'); 
 			//document.getElementById("demo").innerHTML += ret + "<br>";
+	}
+	
+	function deploy() {
+	    alert("Success deploy " + deployed);
+        if(!cpf)
+            return;
+        if(!deployed){
+            cpf.request('["digitalWrite", 7, 1]');
+            deployed = 1;
+        } else {
+            cpf.request('["digitalWrite", 7, 0]');
+            deployed = 0;
+        }
+	
 	}
 	
 </script>
