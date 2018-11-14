@@ -124,8 +124,9 @@
 	
 	function deploy() {
 	    alert("Success deploy " + deployed);
-        if(!cpf)
+        if(!cpf) {
             return;
+	}
         if(!deployed){
             //cpf.request('["digitalWrite", 7, 1]');
             digitaWrite(ULTRASONIC, HIGH);
@@ -149,7 +150,6 @@
 	    if (cpf) {
 	        cpf.get("d" + pin)
         }
-    }
 	
 </script>
 </body>
