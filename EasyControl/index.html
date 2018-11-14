@@ -169,17 +169,17 @@
 	function count() {
 		alert("COUNT_AVAILABLE_PIN " + digitalRead(10));
 		//if (cpf.get("d8")) {
-		if (digitalRead(10)) {
+		if (digitalRead(COUNT_AVAILABLE_PIN)) {
 		    just_finished = true;
 		    if (finished_counting) {
 			fish_count = 0;
 			finished_counting = false;
 		    }
 		    //if (cpf.get("d9")) {
-		    if (digitalRead(8)) {
+		    if (digitalRead(CLOCK_PIN)) {
 			fish_count++;
 			//cpf.request('["digitalWrite", 9, 0]');
-			digitalWrite(8, LOW);
+			digitalWrite(CLOCK_PIN, LOW);
 		    }
 		} else {
 		    finished_counting = true;
