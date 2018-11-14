@@ -127,28 +127,28 @@
 	
 	function deploy() {
 	    alert("Success deploy " + deployed);
-        if(!cpf) {
-            return;
-        }
-        if(!deployed){
-            //cpf.request('["digitalWrite", 7, 1]');
-            digitalWrite(ULTRASONIC, HIGH);
-            //deployed = true;
-        } else {
-            //cpf.request('["digitalWrite", 7, 0]');
-            digitalWrite(ULTRASONIC, LOW);
-            //deployed = false;
-        }
+		if(!cpf) {
+		    return;
+		}
+		if(!deployed){
+		    //cpf.request('["digitalWrite", 7, 1]');
+		    digitalWrite(ULTRASONIC, HIGH);
+		    //deployed = true;
+		} else {
+		    //cpf.request('["digitalWrite", 7, 0]');
+		    digitalWrite(ULTRASONIC, LOW);
+		    //deployed = false;
+		}
 
-        deployed = !deployed;
+		deployed = !deployed;
 	}
 	
     function ultrasonic() {
         if (!cpf)
             return;
-         var distance = cpf.get("ultrasonic","d8","CM");
+        var distance = cpf.get("ultrasonic","d8","CM");
         document.getElementsByClassName("ultrasonic").innerHTML = distance;
-    
+    }
 	function digitalWrite(pin, state) {
 	    if (cpf) {
             	cpf.request('["digitalWrite", ' + pin + ', ' + state + ']') 
