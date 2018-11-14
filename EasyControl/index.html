@@ -58,14 +58,18 @@
 	var celsius;
 
 	var deployed = false;
-	var fish_population = 0;
+	var just_finished = false;
+	var fish_count = 0;
+	var finished_counting = true;
 
 	//arduino wrapper variables
 	var HIGH = 1;
 	var LOW = 0;
 
-	//sensor pins
-	var ULTRASONIC =  7;
+	//pins
+	var CLOCK_PIN = 8;
+	var DATA_PIN = 9;
+	var COUNT_AVAILABLE_PIN = 10;
     
 	setup();
 	function ultrasonic() {
@@ -138,7 +142,7 @@
 	// cpf setup
 	function setup(){
 		if(cpf){
-			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["setPinMode", "digital", 7, "OUTPUT"],["setPinMode", "digital", 8, "SR03"]'); 
+			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["setPinMode", "digital", 7, "OUTPUT"],["setPinMode", "digital", 8, "OUTPUT"],,["setPinMode", "digital", 9, "OUTPUT"],,["setPinMode", "digital", 10, "OUTPUT"]'); 
 			//document.getElementById("demo").innerHTML += ret + "<br>";
 			//cpf.setPinMode('["resetPin"],["setPinMode", "digital", 8, "SR03"]');
 
@@ -162,7 +166,29 @@
 		ultrasonic();
 		deployed = !deployed;
 	}
-	
+	function count() {
+		alert("COUNT_AVAILABLE_PIN " + digitalRead(10));
+		//if (cpf.get("d8")) {
+		if (digitalRead(10)) {
+		    just_finished = true;
+		    if (finished_counting) {
+			fish_count = 0;
+			finished_counting = false;
+		    }
+		    //if (cpf.get("d9")) {
+		    if (digitalRead(8)) {
+			fish_count++;
+			//cpf.request('["digitalWrite", 9, 0]');
+			digitalWrite(8, LOW);
+		    }
+		} else {
+		    finished_counting = true;
+		    if (just_finished){
+			alert("Fish count: " + fish_count);
+		    }
+
+		}
+	}
 	
 </script>
 </body>
