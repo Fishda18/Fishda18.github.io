@@ -170,6 +170,7 @@
 		alert("COUNT_AVAILABLE_PIN " + digitalRead(10));
 		//if (cpf.get("d8")) {
 		if (digitalRead(COUNT_AVAILABLE_PIN)) {
+		    alert("Count available.");
 		    just_finished = true;
 		    if (finished_counting) {
 			fish_count = 0;
