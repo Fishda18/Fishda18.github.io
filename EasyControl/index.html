@@ -142,7 +142,7 @@
 	// cpf setup
 	function setup(){
 		if(cpf){
-			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["setPinMode", "digital", 7, "OUTPUT"],["setPinMode", "digital", 8, "OUTPUT"],,["setPinMode", "digital", 9, "OUTPUT"],,["setPinMode", "digital", 10, "OUTPUT"]'); 
+			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["setPinMode", "digital", 7, "OUTPUT"],["setPinMode", "digital", 8, "OUTPUT"],["setPinMode", "digital", 9, "OUTPUT"],["setPinMode", "digital", 10, "OUTPUT"]'); 
 			//document.getElementById("demo").innerHTML += ret + "<br>";
 			//cpf.setPinMode('["resetPin"],["setPinMode", "digital", 8, "SR03"]');
 
@@ -163,7 +163,6 @@
 		    digitalWrite(ULTRASONIC, LOW);
 		    //deployed = false;
 		}
-		ultrasonic();
 		deployed = !deployed;
 	}
 	function count() {
