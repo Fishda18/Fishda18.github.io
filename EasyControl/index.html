@@ -68,6 +68,25 @@
 	var ULTRASONIC =  7;
     
 	setup();
+	function ultrasonic() {
+		alert("Ultrasonicccccc");
+		if (!cpf)
+		    return;
+		var distance = cpf.get("ultrasonic","d8","CM");
+		document.getElementsByClassName("ultrasonic").innerHTML = distance;
+	}
+
+	function digitalWrite(pin, state) {
+	    if (cpf) {
+		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']') 
+	    }
+	}
+	
+	function digitalRead(pin) {
+	    if (cpf) {
+	        cpf.get("d" + pin)
+            }
+	}
 	// Analog
 	function loop() {
 		if(cpf){
@@ -143,25 +162,6 @@
 		deployed = !deployed;
 	}
 	
-	function ultrasonic() {
-		alert("Ultrasonicccccc");
-		if (!cpf)
-		    return;
-		var distance = cpf.get("ultrasonic","d8","CM");
-		document.getElementsByClassName("ultrasonic").innerHTML = distance;
-	}
-
-	function digitalWrite(pin, state) {
-	    if (cpf) {
-		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']') 
-	    }
-	}
-	
-	function digitalRead(pin) {
-	    if (cpf) {
-	        cpf.get("d" + pin)
-            }
-	}
 	
 </script>
 </body>
