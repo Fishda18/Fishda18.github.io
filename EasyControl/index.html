@@ -100,7 +100,7 @@
 			celsius = toCelsius(tempdata);	
 			document.getElementById("lightvalue").innerHTML = lightdata;
 			document.getElementById("temperaturevalue").innerHTML = celsius;
-			
+			count();
 		}
 		setTimeout(loop, 1000);
 	}
@@ -156,15 +156,16 @@
 		}
 		if(!deployed){
 		    //cpf.request('["digitalWrite", 7, 1]');
-		    digitalWrite(ULTRASONIC, HIGH);
+		    digitalWrite(7, HIGH);
 		    //deployed = true;
 		} else {
 		    //cpf.request('["digitalWrite", 7, 0]');
-		    digitalWrite(ULTRASONIC, LOW);
+		    digitalWrite(7, LOW);
 		    //deployed = false;
 		}
 		deployed = !deployed;
 	}
+
 	function count() {
 		alert("COUNT_AVAILABLE_PIN " + digitalRead(10));
 		//if (cpf.get("d8")) {
