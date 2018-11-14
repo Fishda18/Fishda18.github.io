@@ -56,21 +56,20 @@
 	var tempdata;
 	var celsius;
 
-    var deployed = false;
+	var deployed = false;
 	var fish_population = 0;
 
-    //arduino wrapper variables
+	//arduino wrapper variables
 	var HIGH = 1;
 	var LOW = 0;
-    
-    //sensor pins
-    var ULTRASONIC =  7;
+
+	//sensor pins
+	var ULTRASONIC =  7;
     
 	setup();
 	// Analog
 	function loop() {
 		if(cpf){
-	
 			lightdata = cpf.get("light sensor");
 			tempdata = cpf.get("temperature sensor");
 			celsius = toCelsius(tempdata);	
@@ -125,25 +124,25 @@
 	
 	function deploy() {
 	    alert("Success deploy " + deployed);
-        if(!cpf) {
-            return;
-	}
-        if(!deployed){
-            //cpf.request('["digitalWrite", 7, 1]');
-            digitaWrite(ULTRASONIC, HIGH);
-            //deployed = true;
-        } else {
-            //cpf.request('["digitalWrite", 7, 0]');
-            digitalWrite(ULTRASONIC, LOW);
-            //deployed = false;
-        }
-	    
-        deployed = !deployed;
+		if(!cpf) {
+		    return;
+		}
+		if(!deployed){
+		    //cpf.request('["digitalWrite", 7, 1]');
+		    digitaWrite(ULTRASONIC, HIGH);
+		    //deployed = true;
+		} else {
+		    //cpf.request('["digitalWrite", 7, 0]');
+		    digitalWrite(ULTRASONIC, LOW);
+		    //deployed = false;
+		}
+
+		deployed = !deployed;
 	}
 	
 	function digitalWrite(pin, state) {
 	    if (cpf) {
-            cpf.request('["digitalWrite", ' + pin + ', ' + state + ']') 
+            	cpf.request('["digitalWrite", ' + pin + ', ' + state + ']') 
 	    }
 	}
 	
