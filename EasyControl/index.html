@@ -73,6 +73,7 @@
 		if (!cpf)
 		    return;
 		var distance = cpf.get("ultrasonic","d8","CM");
+		alert("UV distance: " + distance);
 		document.getElementsByClassName("ultrasonic").innerHTML = distance;
 	}
 
