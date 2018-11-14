@@ -89,7 +89,7 @@
 	
 	function digitalRead(pin) {
 	    if (cpf) {
-	        cpf.get("d" + pin)
+	        return cpf.get("d" + pin)
             }
 	}
 	// Analog
