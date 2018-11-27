@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+table {
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 200px;
+    width: 200px;
+    vertical-align: bottom;
+}
+
+#but {
+    text-align: center;
+    margin:auto;
+}
+
+body {
+    background-image: url("assets/mainpage_bckg.jpg");
+    background-position: center top;
+}
+
+</style>
+<body>
+
+<table style="width:50%;">
+    <tr>
+      <th> <img id="fish1" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="logo"/></th>
+      <th> <img type="image" id="fish2" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="fish2"/></th>
+      <th> <img type="image" id="fish3" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="fish3"/></th>
+    </tr>
+</table>
+<button id="but" type="button" Onclick="button()"> LOW </button>
+<table>
+    <tr>
+        <td><input type="image" src="assets/mainpage_detect-button.png" id="detect" Onclick="Detecc()" onmouseover='document.getElementById("detect").src = "assets/mainpage_detect-button.png"' href="javascript:void(0)"></input></td>
+    </tr>
+    <tr>
+        <td><input type="image" src="assets/mainpage_attract-button.png" Onclick="Attracc()" href="javascript:void(0)"></input></td>
+    </tr>
+    <tr>
+        <td><input type="image" src="assets/mainpage_return-button.png" Onclick="Retracc()" href="javascript:void(0)"></input></td>
+    </tr>
+</table>
+<script>
+    var fish1 = false;
+    var fish2 = false;
+    var fish3 = false;
+    var buttonText = "LOW"
+
+    function button() {
+        if (buttonText == "LOW") {
+            buttonText = "MID";
+            fish1 = false;
+            fish2 = false;
+            fish3 = true;
+        } else if (buttonText == "MID") {
+            buttonText = "HIGH";
+            fish1 = false;
+            fish2 = false;
+            fish3 = false;
+        } else if (buttonText == "HIGH") {
+            buttonText = "NON";
+            fish1 = true;
+            fish2 = true;
+            fish3 = true;
+        } else {
+            buttonText = "LOW";
+            fish1 = false;
+            fish2 = true;
+            fish3 = true;
+        }
+        document.getElementById("but").textContent = buttonText;
+        fish11(); fish22(); fish33();
+    }
+    function fish11() {
+        if (fish1) {
+            document.getElementById("fish1").src = "assets/mainpage_fish.png";
+            fish1 = false;
+        } else {
+            document.getElementById("fish1").src = "assets/mainpage_fishglow.png";
+            fish1 = true;
+        }
+    }
+
+    function fish22() {
+        if (fish2) {
+            document.getElementById("fish2").src = "assets/mainpage_fish.png";
+            fish2 = false;
+        } else {
+            document.getElementById("fish2").src = "assets/mainpage_fishglow.png";
+            fish2 = true;
+        }
+    }
+    
+    function fish33() {
+        if (fish3) {
+            document.getElementById("fish3").src = "assets/mainpage_fish.png";
+            fish3 = false;
+        } else {
+            document.getElementById("fish3").src = "assets/mainpage_fishglow.png";
+            fish3 = true;
+        }
+    }
+    
+    function Detecc() {
+        alert("Deteccting")
+    }
+    
+    function Attracc() {
+        alert("Atrraccting")
+    }
+    
+    function Retracc() {
+        alert("Retraccting")
+    }
+</script>
+</body>
+</html>
