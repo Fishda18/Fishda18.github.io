@@ -6,8 +6,8 @@
 table {
     margin-left: auto;
     margin-right: auto;
-    height: 2px;
-    width: 2px;
+    height: 50px;
+    width: 50px;
     vertical-align: bottom;
 }
 
@@ -37,6 +37,10 @@ img.header {
       <th> <img id="fish1" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="logo"/></th>
       <th> <img type="image" id="fish2" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="fish2"/></th>
       <th> <img type="image" id="fish3" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="fish3"/></th>
+    </tr>
+    <tr>
+        <td></td>
+        <td><img id="state" src="assets/none.gif"></td>
     </tr>
 </table>
 <button id="but" type="button" Onclick="button()"> LOW </button>
@@ -113,15 +117,20 @@ img.header {
     }
     
     function Detecc() {
-        alert("Deteccting")
+        //alert("Deteccting");
+        document.getElementById("state").src = "assets/mainpage_notif1.png";
     }
     
     function Attracc() {
-        alert("Atrraccting")
+        //alert("Atrraccting");
+        document.getElementById("state").src = "assets/mainpage_notif2.png";
+
     }
     
     function Retracc() {
-        alert("Retraccting")
+        //alert("Retraccting");
+        document.getElementById("state").src = "assets/mainpage_notif3.png";
+
     }
 </script>
 </body>
