@@ -74,6 +74,7 @@ img.header {
     var ATTRACTOR_ENABLE = 5;
     
     cpfSetup();
+    loop();
     function digitalWrite(pin, state) {
 	    if (cpf) {
 		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']');
@@ -95,6 +96,8 @@ img.header {
     }
     
     function loop() {
+        Detecc();
+	setTimeout(loop, 1000);
     }
 
     function button(buttonText) {
@@ -153,7 +156,6 @@ img.header {
         document.getElementById("state").src = "assets/mainpage_notif1.png";
         reflectActionState("detect");
 	var buttonText = "LOW";
-	alert(cpf);
 	alert("8:" + cpf.get("d8") + " 9:" + cpf.get("d9") + " 10:" + cpf.get("d10"));
 
         if (cpf) {
