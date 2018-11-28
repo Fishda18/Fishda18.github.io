@@ -75,19 +75,21 @@ img.header {
     
     function digitalWrite(pin, state) {
 	    if (cpf) {
-		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']') 
+		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']');
 	    }
 	}
 	
 	function digitalRead(pin) {
 	    if (cpf) {
-	        return cpf.get("d" + pin)
+	        return cpf.get("d" + pin);
             }
+	    return LOW;
 	}
 
     function cpfSetup() {
         if(cpf){
-            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 8, "INPUT"], ["setPinMode", "digital", 9, "INPUT"], ["setPinMode", "digital", 10, "INPUT"]'); 
+            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 8, "INPUT"], ["setPinMode", "digital", 9, "INPUT"], ["setPinMode", "digital", 10, "INPUT"]');
+	    alert("Setup done.");
         }
     }
     
@@ -150,6 +152,7 @@ img.header {
         document.getElementById("state").src = "assets/mainpage_notif1.png";
         reflectActionState("detect");
 	var buttonText;
+	alert(cpf, cpf.get);
 
         if (cpf) {
             if (digitalRead(LOW_PIN)) {
@@ -163,7 +166,7 @@ img.header {
             button(buttonText);
             alert(buttonText);
         } else {
-            alert("Cpf not found.")
+            alert("Cpf not found.");
         }
         
         
@@ -177,9 +180,9 @@ img.header {
         reflectActionState("attract");
         
         if (cpf) {
-            digitalWrite(ATTRACTOR_ENABLE, HIGH)
+            digitalWrite(ATTRACTOR_ENABLE, HIGH);
         } else {
-            alert("Cpf not found.")
+            alert("Cpf not found.");
         }
         
         setTimeout(Done, 1000);
