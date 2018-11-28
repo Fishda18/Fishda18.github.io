@@ -149,7 +149,8 @@ img.header {
         //alert("Deteccting");
         document.getElementById("state").src = "assets/mainpage_notif1.png";
         reflectActionState("detect");
-        
+	var buttonText;
+
         if (cpf) {
             if (digitalRead(LOW_PIN)) {
                 buttonText = "LOW";
