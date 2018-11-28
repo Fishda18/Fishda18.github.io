@@ -52,7 +52,7 @@ img.header {
 <button id="but" type="button" Onclick="button(document.getElementById('but').textContent)"> LOW </button>
 <table>
     <tr>
-        <td><input type="image" id="detect" src="assets/mainpage_detect-button.png" Onclick="Detecc()" href="javascript:void(0)"></input></td>
+        <td><input type="image" id="detect" src="assets/mainpage_detect-button.png" Onclick="Detecc(); reflectActionState('detect');" href="javascript:void(0)"></input></td>
     </tr>
     <tr>
         <td><input type="image" id="attract" src="assets/mainpage_attract-button.png" Onclick="Attracc()" href="javascript:void(0)"></input></td>
@@ -77,7 +77,7 @@ img.header {
     loop();
     function digitalWrite(pin, state) {
 	    if (cpf) {
-		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']');
+            cpf.request('["digitalWrite", ' + pin + ', ' + state + ']');
 	    }
 	}
 	
@@ -91,13 +91,13 @@ img.header {
     function cpfSetup() {
         if(cpf){
             cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 8, "INPUT"], ["setPinMode", "digital", 9, "INPUT"], ["setPinMode", "digital", 10, "INPUT"]');
-	    alert("Setup done.");
+            alert("Setup done.");
         }
     }
     
     function loop() {
         Detecc();
-	setTimeout(loop, 1000);
+        setTimeout(loop, 1000);
     }
 
     function button(buttonText) {
@@ -154,9 +154,9 @@ img.header {
     function Detecc() {
         //alert("Deteccting");
         document.getElementById("state").src = "assets/mainpage_notif1.png";
-        reflectActionState("detect");
-	var buttonText = "LOW";
-	//alert("8:" + cpf.get("d8") + " 9:" + cpf.get("d9") + " 10:" + cpf.get("d10"));
+        //reflectActionState("detect");
+        var buttonText = "LOW";
+        //alert("8:" + cpf.get("d8") + " 9:" + cpf.get("d9") + " 10:" + cpf.get("d10"));
 
         if (cpf) {
             if (digitalRead(LOW_PIN)) {
@@ -172,8 +172,6 @@ img.header {
         } else {
             alert("Cpf not found.");
         }
-        
-        
 
         setTimeout(Done, 1000);
     }
