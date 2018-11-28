@@ -150,11 +150,9 @@ img.header {
         document.getElementById("attract").src = "assets/mainpage_attract-button_disabled.png";
         document.getElementById("return").src = "assets/mainpage_return-button_disabled.png";
         document.getElementById(action).src = "assets/mainpage_" + action + "-button.png";
+        document.getElementById("state").src = "assets/mainpage_notif-" + action + ".png";
     }
     function Detecc() {
-        //alert("Deteccting");
-        document.getElementById("state").src = "assets/mainpage_notif1.png";
-        //reflectActionState("detect");
         var buttonText = "LOW";
         //alert("8:" + cpf.get("d8") + " 9:" + cpf.get("d9") + " 10:" + cpf.get("d10"));
 
@@ -178,7 +176,6 @@ img.header {
     
     function Attracc() {
         //alert("Atraraccting");
-        document.getElementById("state").src = "assets/mainpage_notif2.png";
         reflectActionState("attract");
         
         if (cpf) {
@@ -192,7 +189,6 @@ img.header {
     
     function Retracc() {
         //alert("Retraccting");
-        document.getElementById("state").src = "assets/mainpage_notif3.png";
         reflectActionState("return");
 
         setTimeout(Done, 1000);
