@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>FishDA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
 table {
@@ -36,102 +39,157 @@ img.header {
 <table style="width:50%;">
     <tr>
       <th> <img id="fish1" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="logo"/></th>
-      <th> <img type="image" id="fish2" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="fish2"/></th>
-      <th> <img type="image" id="fish3" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="fish3"/></th>
+      <th> <img id="fish2" type="image" id="fish2" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="fish2"/></th>
+      <th> <img id="fish3" type="image" id="fish3" href="javascript:void(0)" src="assets/mainpage_fish.png" alt="fish3"/></th>
     </tr>
+</table>
+<table>
     <tr>
         <td></td>
         <td><img id="state" src="assets/none.gif"></td>
     </tr>
 </table>
-<button id="but" type="button" Onclick="button()"> LOW </button>
+<button id="but" type="button" Onclick="button(document.getElementById('but').textContent)"> LOW </button>
 <table>
     <tr>
-        <td><input type="image" src="assets/mainpage_detect-button.png" id="detect" Onclick="Detecc()" onmouseover='document.getElementById("detect").src = "assets/mainpage_detect-button.png"' href="javascript:void(0)"></input></td>
+        <td><input type="image" id="detect" src="assets/mainpage_detect-button.png" Onclick="Detecc()" href="javascript:void(0)"></input></td>
     </tr>
     <tr>
-        <td><input type="image" src="assets/mainpage_attract-button.png" Onclick="Attracc()" href="javascript:void(0)"></input></td>
+        <td><input type="image" id="attract" src="assets/mainpage_attract-button.png" Onclick="Attracc()" href="javascript:void(0)"></input></td>
     </tr>
     <tr>
-        <td><input type="image" src="assets/mainpage_return-button.png" Onclick="Retracc()" href="javascript:void(0)"></input></td>
+        <td><input type="image" id="return" src="assets/mainpage_return-button.png" Onclick="Retracc()" href="javascript:void(0)"></input></td>
     </tr>
 </table>
 <script>
-    var fish1 = false;
-    var fish2 = false;
-    var fish3 = false;
-    var buttonText = "LOW"
+    var cpf;    //Appbuilder must override this
 
-    function button() {
+    var HIGH = 1;
+    var LOW = 0;
+    
+    //Pins
+    var LOW_PIN = 8;
+    var MID_PIN = 9;
+    var HIGH_PIN = 10;
+    var ATTRACTOR_ENABLE = 5;
+    
+    function digitalWrite(pin, state) {
+	    if (cpf) {
+		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']') 
+	    }
+	}
+	
+	function digitalRead(pin) {
+	    if (cpf) {
+	        return cpf.get("d" + pin)
+            }
+	}
+
+    function cpfSetup() {
+        if(cpf){
+            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 8, "INPUT"], ["setPinMode", "digital", 9, "INPUT"], ["setPinMode", "digital", 10, "INPUT"]'); 
+        }
+    }
+    
+    function loop() {
+    }
+
+    function button(buttonText) {
+        var fish1 = false;
+        var fish2 = false;
+        var fish3 = false;
+
         if (buttonText == "LOW") {
+            fish1 = true
             buttonText = "MID";
-            fish1 = false;
-            fish2 = false;
-            fish3 = true;
         } else if (buttonText == "MID") {
+            fish1 = true;
+            fish2 = true;
             buttonText = "HIGH";
-            fish1 = false;
-            fish2 = false;
-            fish3 = false;
         } else if (buttonText == "HIGH") {
-            buttonText = "NON";
             fish1 = true;
             fish2 = true;
             fish3 = true;
+            buttonText = "NONE";
         } else {
             buttonText = "LOW";
-            fish1 = false;
-            fish2 = true;
-            fish3 = true;
         }
         document.getElementById("but").textContent = buttonText;
-        fish11(); fish22(); fish33();
+        fishglow("fish1", fish1); fishglow("fish2", fish2); fishglow("fish3", fish3);
     }
-    function fish11() {
-        if (fish1) {
-            document.getElementById("fish1").src = "assets/mainpage_fish.png";
-            fish1 = false;
+    function fishglow(fish, state) {
+        if (state) {
+            document.getElementById(fish).src = "assets/mainpage_fishglow.png";
         } else {
-            document.getElementById("fish1").src = "assets/mainpage_fishglow.png";
-            fish1 = true;
+            document.getElementById(fish).src = "assets/mainpage_fish.png";
         }
     }
+    
+    function Done() {
+        document.getElementById("state").src = "assets/none.gif";
+        document.getElementById("detect").disabled = false;
+        document.getElementById("attract").disabled = false;
+        document.getElementById("return").disabled = false;
+        document.getElementById("detect").src = "assets/mainpage_detect-button.png";
+        document.getElementById("attract").src = "assets/mainpage_attract-button.png";
+        document.getElementById("return").src = "assets/mainpage_return-button.png";
 
-    function fish22() {
-        if (fish2) {
-            document.getElementById("fish2").src = "assets/mainpage_fish.png";
-            fish2 = false;
-        } else {
-            document.getElementById("fish2").src = "assets/mainpage_fishglow.png";
-            fish2 = true;
-        }
     }
     
-    function fish33() {
-        if (fish3) {
-            document.getElementById("fish3").src = "assets/mainpage_fish.png";
-            fish3 = false;
-        } else {
-            document.getElementById("fish3").src = "assets/mainpage_fishglow.png";
-            fish3 = true;
-        }
+    function reflectActionState(action) {
+        document.getElementById("detect").disabled = true;
+        document.getElementById("attract").disabled = true;
+        document.getElementById("return").disabled = true;
+        document.getElementById("detect").src = "assets/mainpage_detect-button_disabled.png";
+        document.getElementById("attract").src = "assets/mainpage_attract-button_disabled.png";
+        document.getElementById("return").src = "assets/mainpage_return-button_disabled.png";
+        document.getElementById(action).src = "assets/mainpage_" + action + "-button.png";
     }
-    
     function Detecc() {
         //alert("Deteccting");
         document.getElementById("state").src = "assets/mainpage_notif1.png";
+        reflectActionState("detect");
+        
+        if (cpf) {
+            if (digitalRead(LOW_PIN)) {
+                buttonText = "LOW";
+            } else if (digitalRead(MID_PIN)) {
+                buttonText = "MID";
+            } else if (digitalRead(HIGH_PIN)) {
+                buttonText = "HIGH";
+            }
+            
+            button(buttonText);
+            alert(buttonText);
+        } else {
+            alert("Cpf not found.")
+        }
+        
+        
+
+        setTimeout(Done, 1000);
     }
     
     function Attracc() {
-        //alert("Atrraccting");
+        //alert("Atraraccting");
         document.getElementById("state").src = "assets/mainpage_notif2.png";
-
+        reflectActionState("attract");
+        
+        if (cpf) {
+            digitalWrite(ATTRACTOR_ENABLE, HIGH)
+        } else {
+            alert("Cpf not found.")
+        }
+        
+        setTimeout(Done, 1000);
     }
     
     function Retracc() {
         //alert("Retraccting");
         document.getElementById("state").src = "assets/mainpage_notif3.png";
+        reflectActionState("return");
 
+        setTimeout(Done, 1000);
     }
 </script>
 </body>
