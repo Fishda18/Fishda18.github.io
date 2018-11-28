@@ -73,6 +73,7 @@ img.header {
     var HIGH_PIN = 10;
     var ATTRACTOR_ENABLE = 5;
     
+    setup();
     function digitalWrite(pin, state) {
 	    if (cpf) {
 		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']');
@@ -151,7 +152,7 @@ img.header {
         //alert("Deteccting");
         document.getElementById("state").src = "assets/mainpage_notif1.png";
         reflectActionState("detect");
-	var buttonText;
+	var buttonText = "LOW";
 	alert(cpf);
 	alert("8:" + cpf.get("d8") + " 9:" + cpf.get("d9") + " 10:" + cpf.get("d10"));
 
