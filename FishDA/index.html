@@ -73,7 +73,7 @@ img.header {
     var HIGH_PIN = 10;
     var ATTRACTOR_ENABLE = 5;
     
-    setup();
+    cpfSetup();
     function digitalWrite(pin, state) {
 	    if (cpf) {
 		cpf.request('["digitalWrite", ' + pin + ', ' + state + ']');
