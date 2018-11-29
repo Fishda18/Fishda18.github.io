@@ -25,7 +25,7 @@
 <button id="but" type="button" Onclick="button(document.getElementById('but').textContent)"> LOW </button>
 <table>
     <tr>
-        <td><input type="image" id="detect" src="assets/mainpage_detect-button.png" Onclick="Detecc(); reflectActionState('detect');" href="javascript:void(0)"></input></td>
+        <td><input type="image" id="detect" src="assets/mainpage_detect-button.png" Onclick="motor('ON'); Detecc(); reflectActionState('detect');" href="javascript:void(0)"></input></td>
     </tr>
     <tr>
         <td><input type="image" id="attract" src="assets/mainpage_attract-button.png" Onclick="Attracc()" href="javascript:void(0)"></input></td>
@@ -45,6 +45,8 @@
     var MID_PIN = 3;
     var HIGH_PIN = 4;
     var ATTRACTOR_ENABLE = 8;
+
+
     
     cpfSetup();
     loop();
@@ -68,6 +70,8 @@
             setup +=  ', ["setPinMode", "digital",' + MID_PIN + ', "INPUT"]'
             setup +=  ', ["setPinMode", "digital",' + HIGH_PIN + ', "INPUT"]'
             alert(setup == '["resetPin"], ["setPinMode", "digital", 0, "INPUT"], ["setPinMode", "digital", 1, "INPUT"], ["setPinMode", "digital", 2, "INPUT"]')
+            setup +=  ', ["setPinMode", "digital",' + ATTRACTOR_ENABLE + ', "OUTPUT"]'
+
             cpf.setPinMode(setup);
             alert("Setup done.");
         }
@@ -118,6 +122,7 @@
         document.getElementById("attract").src = "assets/mainpage_attract-button.png";
         document.getElementById("return").src = "assets/mainpage_return-button.png";
 
+        motor("OFF");
     }
     
     function reflectActionState(action) {
@@ -168,9 +173,25 @@
     function Retracc() {
         //alert("Retraccting");
         reflectActionState("return");
+        motor("REV);
 
         setTimeout(Done, 1000);
     }
+
+    function motor(state) {
+        pos = LOW;
+        neg = LOW;
+        if (state == "ON") {
+            pos = HIGH;
+        } else if (state == "REV") {
+            neg = HIGH;
+        }
+
+        digitalWrite(MOTOR_POS, pos);
+        digitalWrite(MOTOR_NEG, neg);
+        setTimeout(Done, 5000);
+    }
+
 </script>
 </body>
 </html>
