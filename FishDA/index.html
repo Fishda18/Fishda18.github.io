@@ -179,6 +179,7 @@
         //alert("Retraccting");
         reflectActionState("return");
         motor("REV");
+        digitalWrite(ATTRACTOR_ENABLE, LOW);
 
         setTimeout(Done, 1000);
     }
