@@ -72,6 +72,7 @@
             setup +=  ', ["setPinMode", "digital",' + LOW_PIN + ', "INPUT"]';
             setup +=  ', ["setPinMode", "digital",' + MID_PIN + ', "INPUT"]';
             setup +=  ', ["setPinMode", "digital",' + HIGH_PIN + ', "INPUT"]';
+            alert(setup);
             alert(setup == '["resetPin"], ["setPinMode", "digital", 2, "INPUT"], ["setPinMode", "digital", 3, "INPUT"], ["setPinMode", "digital", 4, "INPUT"]');
             setup +=  ', ["setPinMode", "digital",' + ATTRACTOR_ENABLE + ', "OUTPUT"]';
 
@@ -192,7 +193,7 @@
 
         digitalWrite(MOTOR_POS, pos);
         digitalWrite(MOTOR_NEG, neg);
-        setTimeout(Done, 5000);
+        //setTimeout(Done, 5000);
     }
 
 </script>
