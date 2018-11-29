@@ -63,7 +63,12 @@
 
     function cpfSetup() {
         if(cpf){
-            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 0, "INPUT"], ["setPinMode", "digital", 1, "INPUT"], ["setPinMode", "digital", 2, "INPUT"]');
+            var setup = '["resetPin"]'
+            setup +=  ', ["setPinMode", "digital",' + LOW_PIN + ', "INPUT"]'
+            setup +=  ', ["setPinMode", "digital",' + MID_PIN + ', "INPUT"]'
+            setup +=  ', ["setPinMode", "digital",' + HIGH_PIN + ', "INPUT"]'
+            alert(setup == '["resetPin"], ["setPinMode", "digital", 0, "INPUT"], ["setPinMode", "digital", 1, "INPUT"], ["setPinMode", "digital", 2, "INPUT"]')
+            cpf.setPinMode(setup);
             alert("Setup done.");
         }
     }
