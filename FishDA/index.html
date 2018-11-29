@@ -41,10 +41,10 @@
     var LOW = 0;
     
     //Pins
-    var LOW_PIN = 8;
-    var MID_PIN = 9;
-    var HIGH_PIN = 10;
-    var ATTRACTOR_ENABLE = 5;
+    var LOW_PIN = 2;
+    var MID_PIN = 3;
+    var HIGH_PIN = 4;
+    var ATTRACTOR_ENABLE = 8;
     
     cpfSetup();
     loop();
@@ -63,7 +63,7 @@
 
     function cpfSetup() {
         if(cpf){
-            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 8, "INPUT"], ["setPinMode", "digital", 9, "INPUT"], ["setPinMode", "digital", 10, "INPUT"]');
+            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 0, "INPUT"], ["setPinMode", "digital", 1, "INPUT"], ["setPinMode", "digital", 2, "INPUT"]');
             alert("Setup done.");
         }
     }
