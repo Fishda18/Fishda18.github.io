@@ -47,7 +47,7 @@
     var ATTRACTOR_ENABLE = 8;
     
     var MOTOR_POS = 9;
-    var MOTOR_POS = 10;
+    var MOTOR_NEG = 10;
 
 
     
@@ -69,11 +69,11 @@
     function cpfSetup() {
         if(cpf){
             var setup = '["resetPin"]'
-            setup +=  ', ["setPinMode", "digital",' + LOW_PIN + ', "INPUT"]'
-            setup +=  ', ["setPinMode", "digital",' + MID_PIN + ', "INPUT"]'
-            setup +=  ', ["setPinMode", "digital",' + HIGH_PIN + ', "INPUT"]'
-            alert(setup == '["resetPin"], ["setPinMode", "digital", 0, "INPUT"], ["setPinMode", "digital", 1, "INPUT"], ["setPinMode", "digital", 2, "INPUT"]')
-            setup +=  ', ["setPinMode", "digital",' + ATTRACTOR_ENABLE + ', "OUTPUT"]'
+            setup +=  ', ["setPinMode", "digital",' + LOW_PIN + ', "INPUT"]';
+            setup +=  ', ["setPinMode", "digital",' + MID_PIN + ', "INPUT"]';
+            setup +=  ', ["setPinMode", "digital",' + HIGH_PIN + ', "INPUT"]';
+            alert(setup == '["resetPin"], ["setPinMode", "digital", 2, "INPUT"], ["setPinMode", "digital", 3, "INPUT"], ["setPinMode", "digital", 4, "INPUT"]');
+            setup +=  ', ["setPinMode", "digital",' + ATTRACTOR_ENABLE + ', "OUTPUT"]';
 
             cpf.setPinMode(setup);
             alert("Setup done.");
