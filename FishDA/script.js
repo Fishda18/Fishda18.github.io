@@ -36,8 +36,8 @@ function cpfSetup() {
         setup +=  ', ["setPinMode", "digital", ' + LOW_PIN + ', "INPUT"]';
         setup +=  ', ["setPinMode", "digital", ' + MID_PIN + ', "INPUT"]';
         setup +=  ', ["setPinMode", "digital", ' + HIGH_PIN + ', "INPUT"]';
-        alert(setup);
-        alert(setup == '["resetPin"], ["setPinMode", "digital", 2, "INPUT"], ["setPinMode", "digital", 3, "INPUT"], ["setPinMode", "digital", 4, "INPUT"]');
+        //alert(setup);
+        //alert(setup == '["resetPin"], ["setPinMode", "digital", 2, "INPUT"], ["setPinMode", "digital", 3, "INPUT"], ["setPinMode", "digital", 4, "INPUT"]');
         setup +=  ', ["setPinMode", "digital",' + ATTRACTOR_ENABLE + ', "OUTPUT"]';
 
         cpf.setPinMode(setup);
@@ -120,7 +120,7 @@ function Detecc() {
         button(buttonText);
         //alert(buttonText);
     } else {
-        alert("Cpf not found.");
+        //alert("Cpf not found.");
     }
 
     setTimeout(Done, 1000);
@@ -133,10 +133,10 @@ function Attracc() {
     if (cpf) {
         digitalWrite(ATTRACTOR_ENABLE, HIGH);
     } else {
-        alert("Cpf not found.");
+        //alert("Cpf not found.");
     }
     
-    alert(digitalRead(ATTRACTOR_ENABLE));
+    //alert(digitalRead(ATTRACTOR_ENABLE));
     setTimeout(Done, 1000);
 }
 
@@ -151,7 +151,7 @@ function Retracc() {
 
 function ledFlasher() {
     if (digitalRead(ATTRACTOR_ENABLE)) {
-        alert("Attractor enabled."); //debug
+        //alert("Attractor enabled."); //debug
         digitalWrite(LED, !digitalRead(LED));
         setTimeout(ledFlasher, 3000);
     } else {
