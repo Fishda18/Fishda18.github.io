@@ -122,42 +122,6 @@ void ultrasonicSensor() {
 
   loops++;
 }
-
-/*
-int ultrasonicSensor() {
-  static int index{0};
-  static State state{MOTOR_STATE::ON};
-  static unsigned long long millis_last_ping;
-
-  //delay(60 / US_STEPS);
-  if (millis() - millis_last_ping > US_DELAY) {
-    usMotor.write(servo_degrees[index]);
-    Serial.print("Degrees: ");
-    Serial.print(index);
-    Serial.print(" ");
-    Serial.print(usMotor.read());
-    Serial.print(" ");
-    Serial.println(servo_degrees[index]);
-
-    delay(500);
-    distances[index] = ultrasonic.ping_cm();
-    millis_last_ping = millis();
-  
-    if (index >= US_STEPS - 1) {    //
-      state  = MOTOR_STATE::REV;
-    } else if (index < 1){;
-      state = MOTOR_STATE::ON;
-    }
-    switch (state) {
-        case MOTOR_STATE::ON : {++index; break;}
-        case MOTOR_STATE::REV :{--index; break;}
-        default :break;
-    }
-  }
-
-  return index;
-}
-*/
 void sendFishConcentration() {
   Concentration concentration {fishConcentration()};
 
@@ -186,7 +150,7 @@ Concentration fishConcentration() {
 }
 
 void setup() {
-  int out_pins[] {US_SERVO, LOW_PIN, MID_PIN, HIGH_PIN, US_TRIG};
+  int out_pins[] {US_SERVO, LOW_PIN, MID_PIN, HIGH_PIN, US_TRIG, LED};
   for (int i=0; i<sizeof(out_pins)/sizeof(int); ++i) {
     pinMode(out_pins[i], OUTPUT);
   }
@@ -249,24 +213,9 @@ void loop() {
   sendFishConcentration();
   oscillator(digitalRead(ATTRACTOR_ENABLE));
   ledFlasher(digitalRead(ATTRACTOR_ENABLE));
-  Serial.print("Attractor: ");
-  Serial.println(digitalRead(ATTRACTOR_ENABLE));
+  ledFlasher(digitalRead(ATTRACTOR_ENABLE));
   if (Serial.available()) {
     Serial.read();
     digitalWrite(ATTRACTOR_ENABLE, !digitalRead(ATTRACTOR_ENABLE));
   }
-  /*
-  int index {ultrasonicSensor()};
-  for (int i=0; i < US_STEPS; ++i) {
-    if (i == index) Serial.print("[");
-    Serial.print(distances[i]);
-    if (i == index) Serial.print("]");
-    Serial.print(" ");
-  }
-  Serial.println();
-
-  if (digitalRead(ATTRACTOR_ENABLE)) {
-    oscillate();
-  }
-  */
 }

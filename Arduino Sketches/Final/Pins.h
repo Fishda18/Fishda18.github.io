@@ -14,7 +14,7 @@
 
 //attractor pins
 //#define OSCILLATOR 0
-//#define LED 5
+#define LED 14
 
 //control pins
 #define ATTRACTOR_ENABLE 8
@@ -22,7 +22,7 @@
 //config
 //#define OSCILLATOR_DUTY_CYCLE 500
 //#define MIN_FREQ 200
-#//define MAX_FREQ 2000
+//define MAX_FREQ 2000
 #define US_STEPS 19
 #define US_MAX_DIST 400
 #define US_DELAY 600/*60000 / US_STEPS*/
