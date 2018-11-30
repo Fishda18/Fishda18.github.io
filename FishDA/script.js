@@ -9,6 +9,7 @@ var MID_PIN = 3;
 var HIGH_PIN = 4;
 var ATTRACTOR_ENABLE = 8;
 
+var LED = 5;
 var MOTOR_POS = 9;
 var MOTOR_NEG = 10;
 
@@ -46,6 +47,7 @@ function cpfSetup() {
 
 function loop() {
     Detecc();
+    ledFlasher();
     setTimeout(loop, 1000);
 }
 
@@ -145,6 +147,16 @@ function Retracc() {
     digitalWrite(ATTRACTOR_ENABLE, LOW);
 
     setTimeout(Done, 1000);
+}
+
+function ledFlasher() {
+    if (digitalRead(ATTRACTOR_ENABLE)) {
+        alert("Attractor enabled."); //debug
+        digitalWrite(LED, !digitalRead(LED));
+        setTimeout(ledFlasher, 3000);
+    } else {
+        digitalWrite(LED, LOW);
+    }
 }
 
 function motor(state) {
