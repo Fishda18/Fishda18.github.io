@@ -214,8 +214,4 @@ void loop() {
   oscillator(digitalRead(ATTRACTOR_ENABLE));
   ledFlasher(digitalRead(ATTRACTOR_ENABLE));
   ledFlasher(digitalRead(ATTRACTOR_ENABLE));
-  if (Serial.available()) {
-    Serial.read();
-    digitalWrite(ATTRACTOR_ENABLE, !digitalRead(ATTRACTOR_ENABLE));
-  }
 }
