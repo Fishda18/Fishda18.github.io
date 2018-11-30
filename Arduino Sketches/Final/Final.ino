@@ -53,16 +53,6 @@ void controlMotor(State state, Pin pos_pin, Pin neg_pin) {
   }
 }
 
-/*
-void mobilityMotor(State state) {
-  controlMotor(state, MOBILITY_MOTOR_POS, MOBILITY_MOTOR_NEG);
-}
-
-void usMotor(State state) {
-  controlMotor(state, MOBILITY_MOTOR_POS, MOBILITY_MOTOR_NEG);
-}
-*/
-
 void oscillator(bool play) {
   if (!play) {
     tmrpcm.stopPlayback();
@@ -118,7 +108,6 @@ void ultrasonicSensor() {
       clicks++;
       may_dumaan = true;
 
-      Serial.println("May dumaan na fishy");
       Serial.print("Fishy counter: ");
       Serial.println(clicks);
       Serial.print("Loops: ");
@@ -197,7 +186,7 @@ Concentration fishConcentration() {
 }
 
 void setup() {
-  int out_pins[] {US_SERVO, LOW_PIN, MID_PIN, HIGH_PIN, US_TRIG, OSCILLATOR, LED};
+  int out_pins[] {US_SERVO, LOW_PIN, MID_PIN, HIGH_PIN, US_TRIG};
   for (int i=0; i<sizeof(out_pins)/sizeof(int); ++i) {
     pinMode(out_pins[i], OUTPUT);
   }
@@ -207,7 +196,7 @@ void setup() {
     pinMode(in_pins[i], INPUT);
   }
 
-  randomSeed(analogRead(0));  //Replace analog pin (0)
+  randomSeed(analogRead(0));
   usMotor.attach(US_SERVO);
   usMotor.write(0);
   int i = 0; 
@@ -245,7 +234,7 @@ void setup() {
   Serial.println("Reading SD");
   if (!SD.begin(SD_ChipSelectPin)) {      //see if the card is present and can be initialized
     Serial.print("SD failed.");
-    return;                               //don't do anything more if not
+    return;
   }
   Serial.println("SD");
 
