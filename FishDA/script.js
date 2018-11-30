@@ -71,7 +71,7 @@ function button(buttonText) {
     } else {
         buttonText = "LOW";
     }
-    document.getElementById("but").textContent = buttonText;
+    //document.getElementById("but").textContent = buttonText;
     fishglow("fish1", fish1); fishglow("fish2", fish2); fishglow("fish3", fish3);
 }
 function fishglow(fish, state) {
