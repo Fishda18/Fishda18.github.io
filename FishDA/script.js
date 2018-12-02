@@ -33,12 +33,14 @@ function digitalRead(pin) {
 function cpfSetup() {
     if(cpf){
         var setup = '["resetPin"]'
-        setup +=  ', ["setPinMode", "digital", ' + LOW_PIN + ', "INPUT"]';
-        setup +=  ', ["setPinMode", "digital", ' + MID_PIN + ', "INPUT"]';
-        setup +=  ', ["setPinMode", "digital", ' + HIGH_PIN + ', "INPUT"]';
+        setup += ', ["setPinMode", "digital", ' + LOW_PIN + ', "INPUT"]';
+        setup += ', ["setPinMode", "digital", ' + MID_PIN + ', "INPUT"]';
+        setup += ', ["setPinMode", "digital", ' + HIGH_PIN + ', "INPUT"]';
         //alert(setup);
         //alert(setup == '["resetPin"], ["setPinMode", "digital", 2, "INPUT"], ["setPinMode", "digital", 3, "INPUT"], ["setPinMode", "digital", 4, "INPUT"]');
-        setup +=  ', ["setPinMode", "digital",' + ATTRACTOR_ENABLE + ', "OUTPUT"]';
+        setup += ', ["setPinMode", "digital",' + ATTRACTOR_ENABLE + ', "OUTPUT"]';
+        setup += ', ["setPinMode", "digital",' + MOTOR_POS + ', "OUTPUT"]';
+        setup += ', ["setPinMode", "digital",' + MOTOR_NEG + ', "OUTPUT"]';
 
         cpf.setPinMode(setup);
         alert("Setup done.");
@@ -51,25 +53,25 @@ function loop() {
     setTimeout(loop, 1000);
 }
 
-function button(buttonText) {
+function showConcentration(concentration) {
     var fish1 = false;
     var fish2 = false;
     var fish3 = false;
 
-    if (buttonText == "LOW") {
+    if (concentration == "LOW") {
         fish1 = true
-        buttonText = "MID";
-    } else if (buttonText == "MID") {
+        //buttonText = "MID";
+    } else if (concentration == "MID") {
         fish1 = true;
         fish2 = true;
-        buttonText = "HIGH";
-    } else if (buttonText == "HIGH") {
+        //buttonText = "HIGH";
+    } else if (concentration == "HIGH") {
         fish1 = true;
         fish2 = true;
         fish3 = true;
-        buttonText = "NONE";
+        //buttonText = "NONE";
     } else {
-        buttonText = "LOW";
+        //buttonText = "LOW";
     }
     //document.getElementById("but").textContent = buttonText;
     fishglow("fish1", fish1); fishglow("fish2", fish2); fishglow("fish3", fish3);
@@ -105,20 +107,20 @@ function reflectActionState(action) {
     document.getElementById("state").src = "assets/mainpage_notif-" + action + ".png";
 }
 function Detecc() {
-    var buttonText = "LOW";
+    var concentration = "LOW";
     //alert("8:" + cpf.get("d8") + " 9:" + cpf.get("d9") + " 10:" + cpf.get("d10"));
 
     if (cpf) {
         if (digitalRead(LOW_PIN)) {
-            buttonText = "LOW";
+            concentration = "LOW";
         } else if (digitalRead(MID_PIN)) {
-            buttonText = "MID";
+            concentration = "MID";
         } else if (digitalRead(HIGH_PIN)) {
-            buttonText = "HIGH";
+            concentration = "HIGH";
         }
         
-        button(buttonText);
-        //alert(buttonText);
+        showConcentration(concentration);
+        //alert(concentration);
     } else {
         //alert("Cpf not found.");
     }
@@ -136,7 +138,7 @@ function Attracc() {
         //alert("Cpf not found.");
     }
     
-    //alert(digitalRead(ATTRACTOR_ENABLE));
+    alert(digitalRead(ATTRACTOR_ENABLE));
     setTimeout(Done, 1000);
 }
 
@@ -160,8 +162,8 @@ function ledFlasher() {
 }
 
 function motor(state) {
-    pos = LOW;
-    neg = LOW;
+    var pos = LOW;
+    var neg = LOW;
     if (state == "ON") {
         pos = HIGH;
     } else if (state == "REV") {
