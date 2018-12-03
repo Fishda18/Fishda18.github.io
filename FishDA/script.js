@@ -166,7 +166,7 @@ function motor(state) {
         neg = HIGH;
     }
 
-    //alert("Motor: " + state);
+    alert("Motor: " + pos + " " + neg);
     digitalWrite(MOTOR_POS, pos);
     digitalWrite(MOTOR_NEG, neg);
 }
