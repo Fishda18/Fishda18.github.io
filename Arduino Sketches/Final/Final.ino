@@ -77,7 +77,9 @@ void ledFlasher(bool play) {
 
   millis_last_flash = millis();
   Serial.println("LED");
-  digitalWrite(LED, !digitalRead(LED));
+  digitalWrite(LED, HIGH);
+  delay(2000);   //make this "asynchronous"
+  digitalWrite(LED, LOW);
 }
 
 void ultrasonicSensor() {
@@ -214,4 +216,6 @@ void loop() {
   oscillator(digitalRead(ATTRACTOR_ENABLE));
   ledFlasher(digitalRead(ATTRACTOR_ENABLE));
   ledFlasher(digitalRead(ATTRACTOR_ENABLE));
+  Serial.print("Attractor:");
+  Serial.println(digitalRead(ATTRACTOR_ENABLE));
 }

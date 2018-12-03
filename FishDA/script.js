@@ -121,7 +121,7 @@ function Detecc() {
         //alert("Cpf not found.");
     }
 
-    setTimeout(Done, 1000);
+    setTimeout(Done, 4000);
 }
 
 function Attracc() {
@@ -144,7 +144,7 @@ function Retracc() {
     motor("REV");
     digitalWrite(ATTRACTOR_ENABLE, LOW);
 
-    setTimeout(Done, 1000);
+    setTimeout(Done, 4000);
 }
 
 function ledFlasher() {
@@ -166,6 +166,7 @@ function motor(state) {
         neg = HIGH;
     }
 
+    //alert("Motor: " + state);
     digitalWrite(MOTOR_POS, pos);
     digitalWrite(MOTOR_NEG, neg);
 }
