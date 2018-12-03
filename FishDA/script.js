@@ -59,19 +59,15 @@ function showConcentration(concentration) {
     var fish3 = false;
 
     if (concentration == "LOW") {
-        fish1 = true
-        //buttonText = "MID";
+        fish1 = true;
     } else if (concentration == "MID") {
         fish1 = true;
         fish2 = true;
-        //buttonText = "HIGH";
     } else if (concentration == "HIGH") {
         fish1 = true;
         fish2 = true;
         fish3 = true;
-        //buttonText = "NONE";
     }
-    //document.getElementById("but").textContent = buttonText;
     fishglow("fish1", fish1);
     fishglow("fish2", fish2);
     fishglow("fish3", fish3);
