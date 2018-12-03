@@ -43,7 +43,7 @@ function cpfSetup() {
         setup += ', ["setPinMode", "digital",' + MOTOR_NEG + ', "OUTPUT"]';
 
         cpf.setPinMode(setup);
-        alert("Setup done.");
+        //alert("Setup done.");
     }
 }
 
@@ -134,15 +134,15 @@ function Attracc() {
         //alert("Cpf not found.");
     }
     
-    alert(digitalRead(ATTRACTOR_ENABLE));
+    //alert(digitalRead(ATTRACTOR_ENABLE));
     setTimeout(Done, 1000);
 }
 
 function Retracc() {
     //alert("Retraccting");
     reflectActionState("return");
-    motor("REV");
     digitalWrite(ATTRACTOR_ENABLE, LOW);
+    motor("REV");
 
     setTimeout(Done, 4000);
 }
@@ -166,7 +166,7 @@ function motor(state) {
         neg = HIGH;
     }
 
-    alert("Motor: " + pos + " " + neg);
+    //alert("Motor: " + pos + " " + neg);
     digitalWrite(MOTOR_POS, pos);
     digitalWrite(MOTOR_NEG, neg);
 }
