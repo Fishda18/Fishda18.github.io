@@ -26,7 +26,7 @@ function digitalWrite(pin, state) {
 function digitalRead(pin) {
     if (cpf) {
         return cpf.get("d" + pin);
-        }
+    }
     return LOW;
 }
 
@@ -70,6 +70,7 @@ function showConcentration(concentration) {
         fish2 = true;
         fish3 = true;
         //buttonText = "NONE";
+    }
     //document.getElementById("but").textContent = buttonText;
     fishglow("fish1", fish1);
     fishglow("fish2", fish2);
@@ -171,5 +172,4 @@ function motor(state) {
 
     digitalWrite(MOTOR_POS, pos);
     digitalWrite(MOTOR_NEG, neg);
-    //setTimeout(Done, 5000);
 }
