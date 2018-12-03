@@ -70,9 +70,6 @@ function showConcentration(concentration) {
         fish2 = true;
         fish3 = true;
         //buttonText = "NONE";
-    } else {
-        //buttonText = "LOW";
-    }
     //document.getElementById("but").textContent = buttonText;
     fishglow("fish1", fish1);
     fishglow("fish2", fish2);
